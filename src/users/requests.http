@@ -5,11 +5,18 @@ Content-Type: application/json
 
 {
     "name" : "Mark",
-    "email": "markamgad5@gmail.com",
+    "email": "mark1@gmail.com",
     "password": "1234"
 }
 
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
 
+{
+    "email": "mark1@gmail.com",
+    "password": "1234"
+}
 ### Get All
 
 GET http://localhost:3000/auth

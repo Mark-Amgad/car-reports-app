@@ -12,6 +12,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { AuthService } from './auth.service';
+import { LoginDto } from './dtos/login-user.dto';
 
 // TODO : add the endpoints : 3
 @Controller('auth')
@@ -25,7 +26,15 @@ export class UsersController {
 
   @Post('/sign-up')
   create(@Body() body: CreateUserDto) {
-    return this.service.create(body.name, body.email, body.password);
+    const { name, email, password } = body;
+    return this.authService.signUp(name, email, password);
+  }
+
+  @Post('/login')
+  login(@Body() body: LoginDto) {
+    const { email, password } = body;
+
+    return this.authService.login(email, password);
   }
 
   @Get('/')
@@ -50,10 +59,5 @@ export class UsersController {
   @Delete('/:id')
   deleteOne(@Param('id') id: number) {
     return this.service.removeOne(id);
-  }
-
-  @Get('/sign/test')
-  async test() {
-    return this.authService.signUp('markamgad6@gmail.com', '1234');
   }
 }
