@@ -11,18 +11,30 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
+import { AuthService } from './auth.service';
+import { LoginDto } from './dtos/login-user.dto';
 
 // TODO : add the endpoints : 3
 @Controller('auth')
 export class UsersController {
   private service: UsersService;
-  constructor(UsersService: UsersService) {
+  private authService: AuthService;
+  constructor(UsersService: UsersService, AuthService: AuthService) {
     this.service = UsersService;
+    this.authService = AuthService;
   }
 
   @Post('/sign-up')
   create(@Body() body: CreateUserDto) {
-    return this.service.create(body.name, body.email, body.password);
+    const { name, email, password } = body;
+    return this.authService.signUp(name, email, password);
+  }
+
+  @Post('/login')
+  login(@Body() body: LoginDto) {
+    const { email, password } = body;
+
+    return this.authService.login(email, password);
   }
 
   @Get('/')
