@@ -31,3 +31,6 @@ Content-Type: application/json
 
 ### delete one
 DELETE http://localhost:3000/auth/4
+
+### test
+GET http://localhost:3000/auth/sign/test
