@@ -7,6 +7,7 @@ import {
   Patch,
   NotFoundException,
   Delete,
+  Session,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
@@ -25,16 +26,26 @@ export class UsersController {
   }
 
   @Post('/sign-up')
-  create(@Body() body: CreateUserDto) {
+  async create(@Body() body: CreateUserDto, @Session() session: any) {
     const { name, email, password } = body;
-    return this.authService.signUp(name, email, password);
+    const user = await this.authService.signUp(name, email, password);
+    session.userId = user.id;
+
+    return user;
   }
 
   @Post('/login')
-  login(@Body() body: LoginDto) {
+  async login(@Body() body: LoginDto, @Session() session: any) {
     const { email, password } = body;
+    const user = await this.authService.login(email, password);
+    session.userId = user.id;
 
-    return this.authService.login(email, password);
+    return user;
+  }
+
+  @Post('/logout')
+  async logout(@Session() session: any) {
+    session.userId = null;
   }
 
   @Get('/')
