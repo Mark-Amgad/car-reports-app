@@ -8,12 +8,14 @@ import {
   NotFoundException,
   Delete,
   Session,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dtos/login-user.dto';
+import { AuthGuard } from 'src/guards/auth.guard';
 
 // TODO : add the endpoints : 3
 @Controller('auth')
@@ -49,6 +51,7 @@ export class UsersController {
   }
 
   @Get('/')
+  @UseGuards(AuthGuard)
   getAll() {
     return this.service.getAll();
   }
