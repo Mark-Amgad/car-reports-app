@@ -64,4 +64,14 @@ describe('UsersController', () => {
       expect(session.userId).toEqual(1);
     });
   });
+
+  describe('logout', () => {
+    it('session.userId should be NULL', async () => {
+      const session = { userId: 1 };
+      await controller.logout(session);
+      console.log(session.userId);
+
+      expect(session.userId).toEqual(null);
+    });
+  });
 });
