@@ -15,7 +15,7 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dtos/login-user.dto';
-import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
 
 // TODO : add the endpoints : 3
 @Controller('auth')
