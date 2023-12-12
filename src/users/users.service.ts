@@ -23,6 +23,9 @@ export class UsersService {
   }
 
   async getOne(id: number) {
+    if (!id) {
+      return null;
+    }
     return (await this.repo.find({ where: { id: id } }))[0];
   }
 
@@ -35,9 +38,7 @@ export class UsersService {
     if (!user) {
       throw new NotFoundException('user not found');
     }
-    console.log(user);
     Object.assign(user, attrs);
-    console.log(user);
     return this.repo.save(user);
   }
 

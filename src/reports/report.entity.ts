@@ -22,5 +22,5 @@ export class Report {
   approved: boolean;
 
   @ManyToOne(() => User, (user) => user.reports)
-  userId: number;
+  user: User;
 }
