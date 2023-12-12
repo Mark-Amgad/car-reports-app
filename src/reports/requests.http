@@ -1,0 +1,18 @@
+### Get All 
+
+
+GET http://localhost:3000/reports/
+
+
+
+### create
+
+POST http://localhost:3000/reports
+Content-Type: application/json
+
+{
+    "make" : "pmw",
+    "model" : "116i",
+    "year": 2015,
+    "price" : 500000
+}
