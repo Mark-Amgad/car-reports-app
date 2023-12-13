@@ -8,8 +8,8 @@ import { User } from 'src/users/user.entity';
 export class ReportsService {
   // TODO : inject repository
   private repository: Repository<Report>;
-  constructor(@InjectRepository(Report) ReportRepository: Repository<Report>) {
-    this.repository = ReportRepository;
+  constructor(@InjectRepository(Report) ReportsRepository: Repository<Report>) {
+    this.repository = ReportsRepository;
   }
 
   async getAll(): Promise<Report[]> {
