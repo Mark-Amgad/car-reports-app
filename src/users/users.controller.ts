@@ -17,7 +17,6 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dtos/login-user.dto';
 import { AuthGuard } from '../guards/auth.guard';
 
-// TODO : add the endpoints : 3
 @Controller('auth')
 export class UsersController {
   private service: UsersService;
