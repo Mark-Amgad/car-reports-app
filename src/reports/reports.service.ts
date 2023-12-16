@@ -27,5 +27,4 @@ export class ReportsService {
       throw err;
     }
   }
-  // TODO : write suitable services
 }

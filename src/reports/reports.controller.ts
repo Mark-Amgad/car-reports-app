@@ -11,7 +11,6 @@ import { CreateReportDto } from './dtos/create-report.dto';
 import { UsersService } from 'src/users/users.service';
 import { User } from 'src/users/user.entity';
 
-// TODO : add the endpoints : 3
 @Controller('reports')
 export class ReportsController {
   private reportsService: ReportsService;

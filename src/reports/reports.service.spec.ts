@@ -25,8 +25,6 @@ const ReportsRepositoryMock = {
   },
 };
 
-// TODO : write test cases to report service.
-// TODO : test cases to create report service.
 describe('ReportsService', () => {
   let service: ReportsService;
 
