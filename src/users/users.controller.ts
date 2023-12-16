@@ -9,6 +9,7 @@ import {
   Delete,
   Session,
   UseGuards,
+  BadRequestException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
@@ -45,6 +46,7 @@ export class UsersController {
   }
 
   @Post('/logout')
+  @UseGuards(AuthGuard)
   async logout(@Session() session: any) {
     session.userId = null;
   }
@@ -56,6 +58,7 @@ export class UsersController {
   }
 
   @Get('/:id')
+  @UseGuards(AuthGuard)
   async getOne(@Param('id') id: number) {
     const user = await this.service.getOne(id);
     if (!user) {
@@ -65,12 +68,26 @@ export class UsersController {
   }
 
   @Patch('/:id')
-  updateOne(@Param('id') id: number, @Body() body: UpdateUserDto) {
+  @UseGuards(AuthGuard)
+  async updateOne(
+    @Param('id') id: number,
+    @Session() session: any,
+    @Body() body: UpdateUserDto,
+  ) {
+    const currentUserId: number = session.userId;
+    if (currentUserId !== Number(id)) {
+      throw new BadRequestException('You are not allowed to update this user.');
+    }
     return this.service.updateOne(id, body);
   }
 
   @Delete('/:id')
-  deleteOne(@Param('id') id: number) {
+  @UseGuards(AuthGuard)
+  async deleteOne(@Param('id') id: number, @Session() session: any) {
+    const currentUserId: number = session.userId;
+    if (currentUserId !== Number(id)) {
+      throw new BadRequestException('You are not allowed to delete this user.');
+    }
     return this.service.removeOne(id);
   }
 }

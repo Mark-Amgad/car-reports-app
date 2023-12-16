@@ -13,6 +13,6 @@ Content-Type: application/json
 {
     "make" : "pmw",
     "model" : "116i",
-    "year": 2015,
-    "price" : 500000
+    "year": 2019,
+    "price" : 600000
 }
