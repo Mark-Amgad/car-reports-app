@@ -6,7 +6,6 @@ export class AuthGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
-    // TODO : this will change when using JWt.
     const session = request.session;
     return session.userId;
   }
