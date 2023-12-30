@@ -37,7 +37,8 @@ PATCH http://localhost:3000/auth/8
 Content-Type: application/json
 
 {
-    "name":"Mark-updated"
+    "name":"Mark-updated",
+    "isAdmin":true
 }
 
 

@@ -6,7 +6,6 @@ import { CreateReportDto } from './dtos/create-report.dto';
 import { User } from 'src/users/user.entity';
 @Injectable()
 export class ReportsService {
-  // TODO : inject repository
   private repository: Repository<Report>;
   constructor(@InjectRepository(Report) ReportsRepository: Repository<Report>) {
     this.repository = ReportsRepository;
@@ -27,4 +26,7 @@ export class ReportsService {
       throw err;
     }
   }
+
+  // TODO : add endpoint to approve some reports:
+  // this should be done by the admins only
 }
